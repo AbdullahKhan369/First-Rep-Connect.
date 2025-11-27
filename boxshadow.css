@@ -1,0 +1,13 @@
+div {
+    border: #636566 2px solid;
+    height: 300px;
+    width: 300px;
+box-shadow: 5px 5px 0px 0px #289FED,
+ 10px 10px 1px 0px #0289f7,
+ 15px 15px 1px 0px #23a2fc,
+ 20px 20px 1px 0px #3d99e9,
+ 25px 25px 1px 0px #65a2f1,
+ 30px 30px 1px 0px #84b6f7,
+ 5px 5px 15px 5px rgba(49, 49, 49, 0); 
+
+}
