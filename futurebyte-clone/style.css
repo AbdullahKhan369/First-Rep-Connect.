@@ -1,0 +1,626 @@
+:root {
+    --primary-color: #6C63FF; /* A deep purple/indigo for accent */
+    --secondary-color: #343a40; /* Dark grey for secondary elements */
+    --background-dark: #1a1a2e; /* Dark background */
+    --card-dark: #272740; /* Slightly lighter dark for cards */
+    --text-light: #f8f9fa; /* Light text color */
+    --text-muted: #adb5bd; /* Muted text color */
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    scroll-behavior: smooth;
+    padding-top: 70px; /* Adjust for fixed navbar */
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(26, 26, 46, 0.95) !important; /* Darker, slightly transparent */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.navbar-brand, .nav-link { color: var(--text-light) !important; }
+.navbar-brand span { color: var(--primary-color) !important; }
+.nav-link.active { color: var(--primary-color) !important; font-weight: bold; }
+
+/* Main Content Area */
+.main-content-card {
+    background-color: var(--card-dark);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 56px; /* Below navbar */
+    left: 0;
+    height: 4px;
+    background-color: var(--primary-color);
+    width: 0%;
+    z-index: 1050;
+}
+
+/* Carousel */
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.6); /* Darken images for better text contrast */
+}
+.carousel-caption h1 { font-size: 3.5rem; }
+
+/* Sticky Table of Contents (ToC) */
+.toc-wrapper {
+    position: sticky;
+    top: 90px; /* Space from navbar */
+    background-color: var(--card-dark);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-height: calc(100vh - 120px); /* Adjust height */
+    overflow-y: auto;
+}
+.toc-link {
+    display: block;
+    padding: 8px 10px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+.toc-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(108, 99, 255, 0.1);
+}
+.toc-link.active {
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+    font-weight: bold;
+    background-color: rgba(108, 99, 255, 0.15);
+}
+
+/* Mobile Toggle Button for ToC */
+.mobile-toc-toggle {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1040;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+@media (max-width: 991.98px) {
+    .toc-wrapper { display: none; } /* Hide sticky ToC on small screens */
+    .mobile-toc-toggle { display: flex; } /* Show toggle button */
+    .toc-offcanvas {
+        background-color: var(--card-dark);
+        color: var(--text-light);
+    }
+    .offcanvas-header {
+        border-bottom: 1px solid var(--secondary-color);
+    }
+    .offcanvas-body .toc-link {
+        padding: 12px 15px;
+    }
+}
+
+
+/* Service Card Hover Effect */
+.service-card {
+    background-color: var(--card-dark);
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-bottom: 4px solid var(--primary-color);
+}
+.service-card i { color: var(--primary-color); }
+
+/* About Us Timeline */
+.timeline {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 25px;
+    list-style: none;
+    position: relative;
+}
+.timeline-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid var(--background-dark); /* To make it pop */
+}
+.timeline h5 { color: var(--primary-color); }
+
+/* Contact Page */
+.contact-info-card {
+    background-color: var(--card-dark);
+    border: none;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+}
+.contact-form-card {
+    background-color: var(--card-dark);
+    border: none;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.contact-info-card i { color: var(--primary-color); margin-right: 10px; }
+.form-control {
+    background-color: #343450; /* Darker input fields */
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-light);
+}
+.form-control:focus {
+    background-color: #343450;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.25);
+    color: var(--text-light);
+}
+.form-floating > label {
+    color: var(--text-muted);
+}
+.form-control::placeholder { /* For direct input placeholder */
+    color: var(--text-muted);
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #5a52d3; /* Slightly darker hover */
+    border-color: #5a52d3;
+}
+
+/* Utility Classes */
+.text-primary-accent { color: var(--primary-color); }
+
+/* Images (Placeholder) */
+.img-placeholder {
+    background-color: rgba(255, 255, 255, 0.05); /* Light grey tint */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    border-radius: 8px;
+}
+.team-member-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+}
+
+
+.mobile-toc-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* Taake sab ke upar rahe */
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #6C63FF; /* Dark theme wala primary color */
+    color: white;
+}
+
+/* Sidebar Mini Cards */
+.service-card-mini {
+    transition: 0.3s;
+    cursor: pointer;
+}
+.service-card-mini:hover {
+    border-color: var(--primary-color) !important;
+    background-color: rgba(108, 99, 255, 0.05) !important;
+}
+
+/* Custom Feature Cards Styling */
+.custom-feature-card {
+    background: rgba(39, 39, 64, 0.5); /* Semi-transparent dark blue */
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.custom-feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+    background: rgba(108, 99, 255, 0.05);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(108, 99, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+/* Blog Card fixes (Why Chatbots section) */
+.bg-dark-subtle {
+    background-color: #1a1a2e !important; /* Dark Blue-Black */
+    color: #ffffff !important;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.bg-dark-subtle:hover {
+    transform: translateY(-5px);
+    background-color: #16213e !important;
+}
+
+/* List Group fixes (Key Industries section) */
+.list-group-item.bg-transparent {
+    background-color: rgba(30, 30, 50, 0.5) !important;
+    border: 1px solid rgba(108, 99, 255, 0.2) !important;
+    color: #e0e0e0 !important;
+    margin-bottom: 8px;
+    border-radius: 8px !important;
+}
+
+.list-group-item.bg-transparent strong {
+    color: #6C63FF; /* Purple accent for the titles */
+}
+
+/* Accent colors for borders */
+.border-primary { border-color: #6C63FF !important; }
+.border-success { border-color: #00d1b2 !important; }
+.border-info { border-color: #3298dc !important; }
+
+.service-card-mini {
+    background: #1a1a2e !important;
+    border: 1px solid rgba(108, 99, 255, 0.3) !important;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.service-card-mini h6 {
+    color: #ffffff;
+    margin-top: 10px;
+    font-weight: 600;
+}
+.service-card-mini {
+    background: #1a1a2e !important; /* Deep dark blue */
+    border: 1px solid rgba(108, 99, 255, 0.3) !important;
+    border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card-mini:hover {
+    transform: scale(1.03);
+    border-color: #6C63FF !important; /* Glow on hover */
+    background: #16213e !important;
+}
+
+.service-card-mini h6 {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.service-card-mini p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+/* Poore Main Content ka base text color white karne ke liye */
+.main-content-card, 
+.main-content-card p, 
+.main-content-card li {
+    color: #e0e0e0 !important; /* Light grey for better readability */
+}
+
+/* Headings ko bright white aur purple accent dene ke liye */
+
+
+.main-content-card h4, 
+.main-content-card h5, 
+.main-content-card h6 {
+    color: #ffffff !important;
+}
+
+/* Quick Services Sidebar Text Fix */
+.service-card-mini h6 {
+    color: #ffffff !important;
+}
+
+.service-card-mini p {
+    color: #b0b0b0 !important;
+}
+/* Fix for Intro Overflow and Styling */
+.intro-wrapper {
+    padding: 0 15px; /* Side margins taake screen se na takraye */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.intro-glass-card {
+    background: rgba(30, 30, 50, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(108, 99, 255, 0.3);
+    border-radius: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.intro-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Text size responsive hai */
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.text-glow {
+    color: #6C63FF;
+    text-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+}
+
+.intro-subtitle {
+    max-width: 700px; /* Text ko bahar nikalne se rokega */
+    color: #cfcfcf;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.intro-badge {
+    background: rgba(108, 99, 255, 0.1);
+    color: #6C63FF;
+    border: 1px solid rgba(108, 99, 255, 0.4);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-primary-accent {
+    background: #6C63FF;
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary-accent:hover {
+    background: #5a52e0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+}
+
+/* 1. Upar wala chota text (Eyebrow text) */
+.section-tag {
+    color: #6C63FF; /* Purple Theme Color */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 2. Main Heading Styling */
+.section-title {
+    color: #ffffff;
+    font-weight: 800;
+    margin-bottom: 15px;
+    /* Niche wali line mobile pe font size control karegi */
+    font-size: clamp(1.8rem, 4vw, 3rem); 
+}
+
+/* 3. FuturByte word ko highlight karne ke liye */
+.brand-highlight {
+    color: #6C63FF;
+    text-shadow: 0px 0px 15px rgba(108, 99, 255, 0.6); /* Glow Effect */
+}
+
+/* 4. Niche choti si decorative line */
+.bottom-line {
+    height: 3px;
+    width: 60px;
+    background: linear-gradient(to right, #6C63FF, #a8a4ff);
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+/* --- MOBILE FIX (Choti Screen k liye) --- */
+@media (max-width: 768px) {
+    .intro-simple-header {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem; /* Mobile pe size fix kardi */
+    }
+    
+    .section-tag {
+        font-size: 0.75rem;
+    }
+}
+
+
+
+/* =========================================
+   FINAL CLEAN CAROUSEL (Desktop & Mobile)
+   ========================================= */
+
+/* Main Container Fix */
+#carouselExample {
+    border-radius: 20px;
+    overflow: hidden; /* Buttons bahar nahi jayenge */
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.carousel-item {
+    height: 480px; /* Badi screen par height thodi kam ki taake manage rahe */
+    background: #000;
+}
+
+.carousel-item img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+    opacity: 0.6; /* Image thodi dark taake text saaf dikhe */
+}
+
+/* Caption ko niche lane ke liye (Badi Screen) */
+.carousel-caption {
+    bottom: 10% !important; /* Text ko kafi niche kar diya taake pic nazar aaye */
+    z-index: 5;
+    padding: 20px;
+}
+
+.carousel-caption h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+/* About & Contact Cards Styling */
+.about-card, .contact-form-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    border-color: #6C63FF;
+    transform: translateY(-5px);
+}
+
+.text-purple {
+    color: #6C63FF;
+}
+
+/* Custom Input Styling (Sleek Dark Look) */
+.custom-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding: 12px 20px;
+    border-radius: 12px;
+}
+
+.custom-input:focus {
+    border-color: #6C63FF !important;
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.3) !important;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+
+/* About Page Big Screen Optimization */
+.about-section-container {
+    max-width: 1100px; /* Badi screen par itne area mein content rahega */
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.about-card-wrapper {
+    display: flex;
+    flex-direction: column; /* Pehle ek ke niche ek */
+    gap: 30px;
+}
+
+/* Badi Screen par cards ko barabar lane ke liye */
+@media (min-width: 992px) {
+    .about-card-wrapper {
+        flex-direction: row; /* Tablet/Laptop par side-by-side */
+    }
+    
+    .about-card {
+        flex: 1; /* Dono cards barabar size ke honge */
+        min-height: 200px;
+    }
+}
+
+/* Contact Page Balance */
+.contact-main-wrapper {
+    max-width: 1200px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile pe ek column */
+    gap: 50px;
+    padding: 0 30px;
+}
+
+@media (min-width: 992px) {
+    .contact-main-wrapper {
+        grid-template-columns: 1fr 1.5fr; /* Info choti, Form bada (Side by side) */
+        align-items: center;
+    }
+}
+
+.contact-form-card {
+    padding: 40px !important;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    border-radius: 30px;
+}
+
+/* Typography Scaling */
+.section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Mobile pe 2rem, Desktop pe max 3.5rem tak jayega */
+    line-height: 1.2;
+}
+
+/* Puray page ko dark karne ke liye */
+body {
+    background-color: #0f0f1e !important; /* Wahi dark color jo home pe hai */
+    color: white !important;
+}
+
+/* Contact form ke labels aur placeholders ko visible karein */
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+    border: 1px solid rgba(108, 99, 255, 0.2) !important;
+}
